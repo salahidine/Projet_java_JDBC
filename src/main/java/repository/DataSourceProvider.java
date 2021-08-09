@@ -1,8 +1,7 @@
-/**
+package repository; /**
  * Utilisation de pool de connexion BasicDatasource pour la connexion
  * Avantage : Création de connexions simultanés
  */
-package repository;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -13,7 +12,7 @@ public class DataSourceProvider {
     public static BasicDataSource createDatasource() {
         if (theDataSource==null)
             theDataSource= new BasicDataSource();
-            //dataSource.setInitialSize(5);   // 5 connexion dans le pool vont être ouverte mise à dispo de l'application
+            theDataSource.setInitialSize(5);   // 5 connexion dans le pool vont être ouverte mise à dispo de l'application
             theDataSource.setUrl("jdbc:mysql://localhost:3306/tennis?useSSL=false");
             theDataSource.setUsername("COURSDB");
             theDataSource.setPassword("COURSDB");

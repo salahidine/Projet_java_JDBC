@@ -1,7 +1,3 @@
-package Main;
-
-
-
 import entity.Joueur;
 
 import org.apache.commons.dbcp2.BasicDataSource;
