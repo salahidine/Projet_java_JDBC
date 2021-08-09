@@ -8,6 +8,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import repository.JoueurRepoImpl;
 
 import java.sql.*;
+import java.util.List;
 
 public class CrudExample {
     public static void main(String... args){
@@ -18,8 +19,9 @@ public class CrudExample {
        nouveauJoueur.setSexe('H');
        nouveauJoueur.setNom("SIF");
        nouveauJoueur.setPrenom("SALAHIDINE");
+       // Insert
        nouveauJoueurDB.create(nouveauJoueur);
-       System.out.println("Insertion >> Nom:"+nouveauJoueur.getNom()+" Prenom:"+nouveauJoueur.getPrenom());
+       System.out.println("Insertion >> "+nouveauJoueur.getId()+" Nom:"+nouveauJoueur.getNom()+" Prenom:"+nouveauJoueur.getPrenom());
 
         // Select
         Joueur selectedJoueur=nouveauJoueurDB.getByPrenom(nouveauJoueur.getPrenom());
@@ -33,6 +35,12 @@ public class CrudExample {
         // Delete
        nouveauJoueurDB.delete(selectedJoueur.getId());
 
+/*       // liste des joueurs
+        List<Joueur> liste=nouveauJoueurDB.listJoueurs();
+        for (Joueur joueur : liste) {
+            System.out.println("ID "+joueur.getId()+" "+joueur.getPrenom()+" "+joueur.getNom());
+        }
+*/
         if (false) {
             String nom,prenom;
             int id=12;

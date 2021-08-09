@@ -3,10 +3,7 @@ package repository;
 import entity.Joueur;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +17,17 @@ public class JoueurRepoImpl {
         try {
             conn=dataSource.getConnection();
             // Insert
-            PreparedStatement statement = conn.prepareStatement("insert into JOUEUR (PRENOM,NOM,SEXE) Values (?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("insert into JOUEUR (PRENOM,NOM,SEXE) Values (?,?,?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1,joueur.getPrenom());
             statement.setString(2,joueur.getNom());
             statement.setString(3,joueur.getSexe().toString());
             statement.executeUpdate();
+
+            // Récupérer l'id inséré
+            ResultSet rs=statement.getGeneratedKeys(); // Récupérer tt les autoincrement de cette insertion
+            if (rs.next()) {
+                joueur.setId(rs.getLong(1));
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,14 +113,14 @@ public class JoueurRepoImpl {
             conn=dataSource.getConnection();
 
             // Select
-            PreparedStatement statement =statement = conn.prepareStatement("Select ID,NOM,PRENOM,SEXE from JOUEUR");
+            PreparedStatement statement =conn.prepareStatement("Select ID,NOM,PRENOM,SEXE from JOUEUR");
             ResultSet rs=statement.executeQuery();
             while (rs.next()) {
                 Joueur joueurTemp=new Joueur();
+                joueurTemp.setId(rs.getLong("ID"));
                 joueurTemp.setNom(rs.getString("NOM"));
                 joueurTemp.setPrenom(rs.getString("PRENOM"));
                 joueurTemp.setSexe(rs.getString("SEXE").charAt(0)); // Premier caractère
-                System.out.println("ID:"+joueurTemp.getId()+" Nom:"+joueurTemp.getNom()+" Prenom:"+joueurTemp.getPrenom());
                 joueurs.add(joueurTemp); // Ajouter dans la liste
             }
 
