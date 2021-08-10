@@ -11,8 +11,9 @@ import java.sql.SQLException;
 
 public class CrudExample {
     public static void main(String... args){
-
-       // Creation
+int a;
+a=2;
+       // Creation joueur
        Joueur nouveauJoueur=new Joueur();
        JoueurRepoImpl nouveauJoueurDB=new JoueurRepoImpl();
        nouveauJoueur.setSexe('H');
