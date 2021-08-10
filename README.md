@@ -11,8 +11,7 @@ DataSourceProvider : Classe créé pour fournir le datasource de connexion à la
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.8.0</version>
-        </dependency>
-	
+        </dependency>	
 Cette classe contient une methode static pour la gesion de la connexion à la BD (méthode de classe, à appeler directement avec son nom)    
 				
 Architecture SOA (Service oriented architecture) : Interface (Vue) <-> Controleur <-> Service métier <-> Repository (data) ...
