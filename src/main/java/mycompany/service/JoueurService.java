@@ -1,12 +1,13 @@
-package service;
+package mycompany.service;
 
-import entity.Joueur;
-import repository.JoueurRepoImpl;
+import mycompany.entity.Joueur;
+import mycompany.repository.JoueurRepoImpl;
 
 public class JoueurService {
     private JoueurRepoImpl joueurRepo=new JoueurRepoImpl();
 
     public void createJoueurService(Joueur joueur) {
+
         joueurRepo.create(joueur);
     }
 }

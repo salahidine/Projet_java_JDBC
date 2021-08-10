@@ -1,10 +1,13 @@
-import entity.Joueur;
+package mycompany;
 
+import mycompany.entity.Joueur;
 import org.apache.commons.dbcp2.BasicDataSource;
-import repository.JoueurRepoImpl;
+import mycompany.repository.JoueurRepoImpl;
 
-import java.sql.*;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CrudExample {
     public static void main(String... args){
@@ -31,12 +34,12 @@ public class CrudExample {
         // Delete
        nouveauJoueurDB.delete(selectedJoueur.getId());
 
-/*       // liste des joueurs
-        List<Joueur> liste=nouveauJoueurDB.listJoueurs();
-        for (Joueur joueur : liste) {
-            System.out.println("ID "+joueur.getId()+" "+joueur.getPrenom()+" "+joueur.getNom());
-        }
-*/
+        /*       // liste des joueurs
+                List<Joueur> liste=nouveauJoueurDB.listJoueurs();
+                for (Joueur joueur : liste) {
+                    System.out.println("ID "+joueur.getId()+" "+joueur.getPrenom()+" "+joueur.getNom());
+                }
+        */
         if (false) {
             String nom,prenom;
             int id=12;

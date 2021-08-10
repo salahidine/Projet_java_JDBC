@@ -1,4 +1,4 @@
-package repository; /**
+package mycompany.repository; /**
  * Utilisation de pool de connexion BasicDatasource pour la connexion
  * Avantage : Création de connexions simultanés
  */

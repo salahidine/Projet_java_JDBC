@@ -1,6 +1,6 @@
-package repository;
+package mycompany.repository;
 
-import entity.Joueur;
+import mycompany.entity.Joueur;
 
 import javax.sql.DataSource;
 import java.sql.*;
