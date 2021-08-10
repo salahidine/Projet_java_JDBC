@@ -11,3 +11,9 @@ DataSourceProvider : Classe créé pour fournir le datasource de connexion à la
         </dependency>
 Cette classe contient une methode static pour la gesion de la connexion à la BD (méthode de classe, à appeler directement avec son nom)    
 				
+Architecture SOA (Service oriented architecture) : Interface (Vue) <-> Controleur <-> Service métier <-> Repository (data) ...
+Les limites de JDBC : 
+impose de connaitre le moteur de DB alors que les requêtes change selon le moteur de DB
+l'evolution de la base (modification du nom d'une table, type...) il faut évoluer les code Java correspondant.
+
+Framework ORM : object-relational mapping est un FRAMEWORK qui se place en interface entre un programme applicatif et une base de données relationnelle 
