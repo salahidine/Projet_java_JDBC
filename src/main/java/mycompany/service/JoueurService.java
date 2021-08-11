@@ -6,8 +6,13 @@ import mycompany.repository.JoueurRepoImpl;
 public class JoueurService {
     private JoueurRepoImpl joueurRepo=new JoueurRepoImpl();
 
-    public void createJoueurService(Joueur joueur) {
+    public void createJoueur(Joueur joueur) {
 
         joueurRepo.create(joueur);
+    }
+
+    public Joueur getJoueur(Long id) {
+
+        return joueurRepo.getById(id);
     }
 }

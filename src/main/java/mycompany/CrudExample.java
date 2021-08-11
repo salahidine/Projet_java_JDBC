@@ -1,5 +1,6 @@
 package mycompany;
 
+import mycompany.controller.JoueurController;
 import mycompany.entity.Joueur;
 import org.apache.commons.dbcp2.BasicDataSource;
 import mycompany.repository.JoueurRepoImpl;
@@ -11,15 +12,23 @@ import java.sql.SQLException;
 
 public class CrudExample {
     public static void main(String... args){
-       // Creation joueur
-       Joueur nouveauJoueur=new Joueur();
-       JoueurRepoImpl nouveauJoueurDB=new JoueurRepoImpl();
-       nouveauJoueur.setSexe('H');
-       nouveauJoueur.setNom("SIF");
-       nouveauJoueur.setPrenom("SALAHIDINE");
-       // Insert
-       nouveauJoueurDB.create(nouveauJoueur);
-       System.out.println("Insertion >> "+nouveauJoueur.getId()+" Nom:"+nouveauJoueur.getNom()+" Prenom:"+nouveauJoueur.getPrenom());
+
+    // Ajout des controlleurs à l'architecture (Select joueur en utilisant Hibernate)
+        JoueurController joueurController=new JoueurController();
+        joueurController.afficheDetailJoueur();
+
+    // JDBC
+    if (false) {
+        // Creation joueur
+        Joueur nouveauJoueur=new Joueur();
+        JoueurRepoImpl nouveauJoueurDB=new JoueurRepoImpl();
+        nouveauJoueur.setSexe('H');
+        nouveauJoueur.setNom("SIF");
+        nouveauJoueur.setPrenom("SALAHIDINE");
+
+        // Insert
+        nouveauJoueurDB.create(nouveauJoueur);
+        System.out.println("Insertion >> "+nouveauJoueur.getId()+" Nom:"+nouveauJoueur.getNom()+" Prenom:"+nouveauJoueur.getPrenom());
 
         // Select
         Joueur selectedJoueur=nouveauJoueurDB.getByPrenom(nouveauJoueur.getPrenom());
@@ -31,7 +40,7 @@ public class CrudExample {
         System.out.println("MAJ >> Ancien prenom:"+nouveauJoueur.getPrenom()+" Nouveau prenom:"+nouveauPrenom);
 
         // Delete
-       nouveauJoueurDB.delete(selectedJoueur.getId());
+        nouveauJoueurDB.delete(selectedJoueur.getId());
 
         /*       // liste des joueurs
                 List<Joueur> liste=nouveauJoueurDB.listJoueurs();
@@ -39,7 +48,10 @@ public class CrudExample {
                     System.out.println("ID "+joueur.getId()+" "+joueur.getPrenom()+" "+joueur.getNom());
                 }
         */
-        if (false) {
+    }
+
+    // Méthodologie Basic à la cnx BD
+    if (false) {
             String nom,prenom;
             int id=12;
             Connection conn = null;

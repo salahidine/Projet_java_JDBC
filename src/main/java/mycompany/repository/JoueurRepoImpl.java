@@ -1,6 +1,9 @@
 package mycompany.repository;
 
+import mycompany.HibernateUtil;
 import mycompany.entity.Joueur;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -11,33 +14,27 @@ import java.util.List;
 public class JoueurRepoImpl {
 
     public void create(Joueur joueur)  {
-        Connection conn = null;
-
-        // Creation de data source
-        DataSource dataSource= DataSourceProvider.createDatasource();
+        Session session=null;
+        Transaction tx=null;
         try {
-            conn=dataSource.getConnection();
-            // Insert
-            PreparedStatement statement = conn.prepareStatement("insert into JOUEUR (PRENOM,NOM,SEXE) Values (?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1,joueur.getPrenom());
-            statement.setString(2,joueur.getNom());
-            statement.setString(3,joueur.getSexe().toString());
-            statement.executeUpdate();
+            session=HibernateUtil.getSessionFactory().openSession(); // Créer une session hibernate
+            tx=session.beginTransaction();
+            session.persist(joueur); // insert into
+            // Lancer les mise à jours faite dans la session hibernate (hibernate exsige une transaction qd il s'agit de insert)
+            tx.commit();
+            System.out.println("Joueur créé");
 
-            // Récupérer l'id inséré
-            ResultSet rs=statement.getGeneratedKeys(); // Récupérer tt les autoincrement de cette insertion
-            if (rs.next()) {
-                joueur.setId(rs.getLong(1));
+        } catch (Exception e) {
+            if (tx!=null)
+            {
+                tx.rollback();
             }
-
-        } catch (SQLException e) {
             e.printStackTrace();
         }
         finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (session!=null)
+            {
+                session.close();
             }
         }
     }
@@ -166,5 +163,26 @@ public class JoueurRepoImpl {
 
     }
 
+    public Joueur getById(Long id)  {
+
+        Joueur joueur=null;
+        Session session=null;
+
+        try {
+            session=HibernateUtil.getSessionFactory().openSession(); // Créer une session hibernate
+            joueur=session.get(Joueur.class,id);
+            System.out.println("Joueur lu");
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (session!=null)
+            {
+                session.close();
+            }
+        }
+        return joueur;
+    }
 
 }
