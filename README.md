@@ -21,3 +21,5 @@ impose de connaitre le moteur de DB alors que les requêtes change selon le mote
 l'evolution de la base (modification du nom d'une table, type...) il faut évoluer les code Java correspondant.
 
 Framework ORM : object-relational mapping est un FRAMEWORK qui se place en interface entre un programme applicatif et une base de données relationnelle 
+
+HibernateUtil : Class qui contient la session hibernate essentielle pour ouvrir pour la communication avec la BD (sessionFactory from hibernate.cfg.xml)
