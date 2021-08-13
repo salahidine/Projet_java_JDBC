@@ -23,5 +23,5 @@ l'evolution de la base (modification du nom d'une table, type...) il faut évolu
 Framework ORM : object-relational mapping est un FRAMEWORK qui se place en interface entre un programme applicatif et une base de données relationnelle 
 
 HibernateUtil : Class qui contient la session hibernate essentielle pour ouvrir pour la communication avec la BD (sessionFactory from hibernate.cfg.xml)
-
+Hibernate peut rendre le code portable peu importe la base de donnée utilisé (en identifiant le parametre dialect dans hibernate.cfg.xml)
 Tant que la session hibernate est ouvert l'objet reste persistent (on peux faire des modif jusqu'au session.close) >> Exemple : joueur.setNom modifie le nom dans la BD
