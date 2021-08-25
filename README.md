@@ -27,3 +27,5 @@ HibernateUtil : Class qui contient la session hibernate essentielle pour ouvrir 
 Hibernate peut rendre le code portable peu importe la base de donnée utilisé (en identifiant le parametre dialect dans hibernate.cfg.xml)
 
 Tant que la session hibernate est ouvert l'objet reste persistent (on peux faire des modif jusqu'au session.close) >> Exemple : joueur.setNom modifie le nom dans la BD
+
+@column pour le mapping d'une colonne qui ne porte pas le même nom dans la base / @transient : pour dire à hibernate d'exclure la propriété du mapping
