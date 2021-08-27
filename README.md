@@ -29,3 +29,6 @@ Hibernate peut rendre le code portable peu importe la base de donnée utilisé (
 Tant que la session hibernate est ouvert l'objet reste persistent (on peux faire des modif jusqu'au session.close) >> Exemple : joueur.setNom modifie le nom dans la BD
 
 @column pour le mapping d'une colonne qui ne porte pas le même nom dans la base / @transient : pour dire à hibernate d'exclure la propriété du mapping
+
+@ManyToOne pour dire qu'il s'agit d'une association 1-n dans la BD (il sera indispensable d'ajouter @JoinColumn pour identifier la clé etrangère, ex : @JoinColumn(name="id_tournoi). 
+@ManyToOne(fetch=FetchType.LAZY) active le mode lazy loading fait que hibernate ne charge pas la jointure au depart mais il relance automatiquement une requéte complémentaire en cas de besoin des informations de la 2eme table 
