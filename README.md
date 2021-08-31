@@ -32,7 +32,9 @@ Tant que la session hibernate est ouvert l'objet reste persistent (on peux faire
 
 @ManyToOne pour dire qu'il s'agit d'une association 1-n dans la BD (il sera indispensable d'ajouter @JoinColumn pour identifier la clé etrangère, ex : @JoinColumn(name="id_tournoi). 
 @ManyToOne(fetch=FetchType.LAZY) active le mode lazy loading fait que hibernate ne charge pas la jointure au depart mais il relance automatiquement une requéte complémentaire en cas de besoin des informations de la 2eme table 
-Autres association : @OneToOne
+Autres association : @OneToOne \ @ManyToMany (il faut utiliser une proprieté de type collection pour la table associative)
+Pour indiquer une association bidirectionnelle on utilise l'attribut mappedBy. ex: @OneToOne(mappedBy:"match") 
+d'autres propriétés utiles : (cascade=CascadeType.PERSIST) ou cascade=CascadeType.ALL ET ,orphanRemoval = true pour la suppression dans l'association
 
 L'utilisation de DTO a des consequences importante sur l'architecture de l'app (surtout la couche service) et de la facon de travailler
 Le concept de DTO est utilisé dans les controleurs et représente l'information à l'écran alors que les entités s utilisent dans le repository et représente les infos de la BD. Pour une information de BDD on peut avoir un paquet d'ecran qui represente cette info de differente facon. 
