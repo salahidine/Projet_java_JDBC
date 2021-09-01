@@ -40,7 +40,8 @@ L'utilisation de DTO a des consequences importante sur l'architecture de l'app (
 Le concept de DTO est utilisé dans les controleurs et représente l'information à l'écran alors que les entités s utilisent dans le repository et représente les infos de la BD. Pour une information de BDD on peut avoir un paquet d'ecran qui represente cette info de differente facon. 
 ex: pour la classe Epreuve nous avons créé EpreuveFullDto et EpreuveLightDto
 
-HQL :
+HQL (hibernate query langage) requetage hibernate par classe 
+Alternatives : JPQL (Java Persistence Query Lnagage) / Requettage par prograammation Crieria API, 
 Ex : 
 Query<Joueur> query = session.createQuery("from Joueur",Joueur.class)
 List<Joueur> joueurs= query.getResultList();
